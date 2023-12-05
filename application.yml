@@ -30,4 +30,26 @@ otlp: #این بخش نقطه انتهایی OpenTelemetry Collector را که �
      export:
         step: 10s
      sampling:
-      probability: 1.0	
+      probability: 1.0
+# تنظیمات مدیریت
+management: #این بخش تمام نقاط انتهایی actuator را فعال می کند.
+   metrics:
+    export:
+      jmx: true
+      prometheus: true
+   health:
+     circuitbreakers.enabled: true
+     ratelimiters.enabled: true
+   tracing:
+     sampling:
+       probability: 1.0
+       enabled: true
+   endpoint:
+        gateway:
+         enabled: true
+        health:
+          show-details: always
+   endpoints:
+    web:
+      exposure:
+            include: '*'  
